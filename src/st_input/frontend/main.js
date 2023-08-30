@@ -22,13 +22,16 @@ function onRender(event) {
       type,
       placeholder,
       disabled,
-      label_visibility
+      label_visibility,
     } = event.detail.args;
 
     const text_input = document.getElementById('text_input')
     const label_el = document.getElementById('label')
     const root = document.getElementById("root")
 
+    if(value && !text_input.value){
+      text_input.value = value
+    }
 
     if (label_el) {
       label_el.innerText = label
@@ -38,14 +41,14 @@ function onRender(event) {
     if(type == "password"){
       text_input.type = "password"
     }
-    else if (type == "phone"){
+    else if (type == "phone" || type == "tel") {
       text_input.type = "tel"
     }
     else if (type == "email"){
       text_input.type = "email"
     }
-    else if (type =="text"){
-      text_input.type = "text"
+    else if (type =="number"){
+      text_input.type = "number"
     }else{
       text_input.type = type
     }
@@ -72,6 +75,7 @@ function onRender(event) {
     
     text_input.onchange = function() {
       var inputValue = text_input.value
+      console.log(inputValue)
       sendValue(inputValue)
     }  
   }

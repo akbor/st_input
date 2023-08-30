@@ -20,7 +20,7 @@ def st_input(
     args: Optional[Tuple[Any, ...]] = None,
     kwargs: Optional[Dict[str, Any]] = None,
     *,
-    placeholder: str = "placeholder",
+    placeholder: Optional[str]= None,
     disabled: bool = False,
     label_visibility: str = "visible",
 ) -> str:
@@ -31,7 +31,6 @@ def st_input(
         ----------
         label : str
             A short label explaining to the user what this input is for.
-
         value : object
             The text value of this widget when it first renders. This will be
             cast to str internally.
@@ -45,7 +44,7 @@ def st_input(
         type : str
             The type of the text input. This can be any valid html inpute type
             such as "phone", "password", "email", or anything. By default it is
-            "text", Note for "phone" it will set the input type as "tel"
+            "text", Note for "phone" it will set the input type as "tel".
         on_change : callable
             An optional callback invoked when this text input's value changes.
         args : tuple
@@ -68,7 +67,7 @@ def st_input(
         -------
         str
             The current value of the text input widget.
-"""
+"""   
         if key is None:
             key = "st_input" + label
 
@@ -103,7 +102,7 @@ def main():
     from datetime import datetime
 
     st.write("## Default input")
-    value = st_input("Enter a value, :sunglasses:")
+    value = st_input("Enter a value")
     st.write(value)
 
     "## st_input with hidden label"
